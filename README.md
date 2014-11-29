@@ -2,6 +2,25 @@
 
 This is Mavenized fork of https://github.com/LoadLow/CloudflareApiLibrary project by LoadLow.
 
+Repository:
+
+```xml
+<repository>
+  <id>sarxos-ftp-repo</id>
+  <url>http://repo.sarxos.pl/maven2/</url>
+</repository>
+```
+
+Dependency:
+
+```xml
+<dependency>
+  <groupId>com.github.sarxos</groupId>
+  <artifactId>cloudflare-api</artifactId>
+  <version>1.1</version>
+</dependency>
+```
+
 
 CloudflareApiLibrary
 ====================
