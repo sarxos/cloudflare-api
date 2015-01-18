@@ -14,7 +14,7 @@
 
 	<groupId>com.github.sarxos</groupId>
 	<artifactId>cloudflare-api</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 
 	<name>Cloudflare API</name>
 	<description>Cloudflare APIi</description>
