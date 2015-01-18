@@ -66,33 +66,45 @@ public class CloudflareRequest implements Closeable {
             }
             line = null;
 
-            JSONObject JsonResult = (JSONObject) JSONSerializer.toJSON(
+            JSONObject jsonResult = (JSONObject) JSONSerializer.toJSON(
                     sbResult.toString());
             sbResult = null;
 
 
-            if (!JsonResult.containsKey("result")) {
+            if (!jsonResult.containsKey("result")) {
                 throw new CloudflareError("no_result", "No result received", "Result=null");
             }
 
-            CloudflareResult result = CloudflareResult.valueOf(JsonResult.getString(
+            CloudflareResult result = CloudflareResult.valueOf(jsonResult.getString(
                     "result"));
 
-            switch (result) {
-                case success: {
-                    if (JsonResult.containsKey("response")) {
-                        return JsonResult.getJSONObject("response");
-                    } else {
-                        return JsonResult;
-                    }
-                }
-                case error: {
-                    CloudflareError error = CloudflareErrorEnum.valueOf(JsonResult.getString(
-                            "err_code")).getException(
-                            JsonResult.getString("msg"));
-                    throw error;
-                }
-            }
+			switch (result) {
+
+				case success: {
+					if (jsonResult.containsKey("response")) {
+						return jsonResult.getJSONObject("response");
+					} else {
+						return jsonResult;
+					}
+				}
+
+				case error: {
+
+					String errMessage = "(no message in response)";
+					if (jsonResult.containsKey("msg")) {
+						errMessage = jsonResult.getString("msg");
+					}
+
+					String errCode = CloudflareErrorEnum.UNKNOWN_ERROR.toString();
+					if (jsonResult.containsKey("err_code")) {
+						errCode = jsonResult.getString("err_code");
+					}
+
+					throw CloudflareErrorEnum
+						.valueOf(errCode)
+						.getException(errMessage);
+				}
+			}
 
         } catch (IOException e) {
         }
