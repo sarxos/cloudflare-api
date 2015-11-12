@@ -1,7 +1,7 @@
 package com.cloudflare.api;
 
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 /**
  *
@@ -11,7 +11,7 @@ public class CloudflareAccess {
 
     private String tkn;
     private String email;
-    private HttpClient client = new DefaultHttpClient();
+    private HttpClient client = HttpClientBuilder.create().build();
     public final static String CF_API_LINK = "https://www.cloudflare.com/api_json.html";
 
     public CloudflareAccess(String mail, String APIkey) {
