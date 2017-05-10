@@ -1,3 +1,9 @@
+# DEPRECATION NOTICE
+
+PLEASE READ - THIS IS **IMPORTANT!**
+
+This code **will not work** with [new CloudFlare API](https://api.cloudflare.com/) introduced at the end of 2016. I suggest to use plain [Unirest](http://unirest.io/java.html) calls instead. This is what I did in my project when I had to support newer API.
+
 # Welcome
 
 This is Mavenized fork of https://github.com/LoadLow/CloudflareApiLibrary project by LoadLow.
